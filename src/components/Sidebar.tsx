@@ -6,6 +6,7 @@ import {
   CogIcon,
   BanknotesIcon,
   ClipboardDocumentCheckIcon,
+  CalendarDaysIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import clsx from "clsx";
@@ -13,6 +14,8 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/dashboard", label: "Dashboard", icon: HomeIcon },
+
+  { href: "/dashboard/events", label: "Events", icon: CalendarDaysIcon },
   { href: "/dashboard/members", label: "Members", icon: UserIcon },
   { href: "/dashboard/collections", label: "Collections", icon: BanknotesIcon },
   {

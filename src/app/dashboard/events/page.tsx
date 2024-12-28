@@ -1,7 +1,7 @@
-export default function Members() {
+export default function Events() {
   return (
     <div className='p-6 bg-white rounded-lg shadow-md'>
-      <h1 className='text-3xl font-semibold mb-6'>Members</h1>
+      <h1 className='text-3xl font-semibold mb-6'>Events</h1>
       <table className='min-w-full bg-white'>
         <thead>
           <tr>
