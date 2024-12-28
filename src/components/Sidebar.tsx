@@ -7,10 +7,11 @@ import {
   BanknotesIcon,
   ClipboardDocumentCheckIcon,
   CalendarDaysIcon,
+  ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const links = [
   { href: "/dashboard", label: "Dashboard", icon: HomeIcon },
@@ -28,6 +29,19 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const response = await fetch("/api/auth/logout", {
+      method: "POST",
+    });
+
+    if (response.ok) {
+      router.push("/login");
+    } else {
+      console.error("Failed to logout");
+    }
+  };
 
   return (
     <div className='w-64 bg-white border-r shadow-lg'>
@@ -35,18 +49,27 @@ export default function Sidebar() {
         Thrive Family Chapel
       </h1>
       <nav>
-        {links.map(({ href, label, icon: Icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className={clsx("flex items-center p-4 hover:bg-gray-100", {
-              "bg-background text-primary": pathname === href,
-            })}
+        <ul>
+          {links.map(({ href, label, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className={clsx("flex items-center p-4 hover:bg-gray-100", {
+                "bg-background text-primary": pathname === href,
+              })}
+            >
+              <Icon className='w-6 h-6 mr-3' />
+              {label}
+            </Link>
+          ))}
+          <li
+            className='p-4 hover:bg-gray-700 flex items-center cursor-pointer'
+            onClick={handleLogout}
           >
-            <Icon className='w-6 h-6 mr-3' />
-            {label}
-          </Link>
-        ))}
+            <ArrowRightOnRectangleIcon className='h-5 w-5 mr-2' />
+            Logout
+          </li>
+        </ul>
       </nav>
     </div>
   );
