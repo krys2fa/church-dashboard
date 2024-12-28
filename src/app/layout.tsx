@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const showSidebar = !["/login", "/signup"].includes(pathname);
+  const showSidebar = !["/login", "/signup", "/"].includes(pathname);
 
   return (
     <html lang='en'>

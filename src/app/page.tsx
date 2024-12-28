@@ -16,5 +16,5 @@ export default function Home() {
     }
   }, [router]);
 
-  return <div className=''>Welcome to the Home Page</div>;
+  return <div></div>;
 }
